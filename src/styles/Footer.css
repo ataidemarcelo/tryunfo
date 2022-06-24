@@ -1,0 +1,9 @@
+.footer {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.footer h2 {
+  color: white;
+}
