@@ -7,21 +7,44 @@ import Footer from './components/Footer';
 
 import './App.css';
 
-const cards = [{
-  cardName: 'JavaScript',
-  cardDescription: 'Uma descrição qualquer!!!',
-  cardAttr1: '90',
-  cardAttr2: '80',
-  cardAttr3: '70',
-  cardImage: 'http://endereco-de-uma-image',
-  cardRare: 'raro',
-  cardTrunfo: false,
-  hasTrunfo: false,
-  isSaveButtonDisabled: true,
-}];
+// const cards = [{
+//   cardName: 'JavaScript',
+//   cardDescription: 'Uma descrição qualquer!!!',
+//   cardAttr1: '90',
+//   cardAttr2: '80',
+//   cardAttr3: '70',
+//   cardImage: 'http://endereco-de-uma-image',
+//   cardRare: 'raro',
+//   cardTrunfo: false,
+//   hasTrunfo: false,
+//   isSaveButtonDisabled: true,
+// }];
 
 class App extends React.Component {
-  onInputChange = () => {}
+  constructor() {
+    super();
+
+    this.state = {
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+      hasTrunfo: false,
+      isSaveButtonDisabled: true,
+    };
+  }
+
+  onInputChange = ({ target }) => {
+    const { name, type } = target;
+    const value = type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    });
+  }
 
   onSaveButtonClick = () => {}
 
@@ -33,11 +56,11 @@ class App extends React.Component {
         <main className="main">
           <div className="main-container">
             <Form
-              { ...cards[0] }
+              { ...this.state }
               onInputChange={ this.onInputChange }
               onSaveButtonClick={ this.onSaveButtonClick }
             />
-            <Card { ...cards[0] } />
+            <Card { ...this.state } />
           </div>
         </main>
 
