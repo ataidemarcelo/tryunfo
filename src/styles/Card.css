@@ -1,10 +1,20 @@
-.card {
-  border: 1px solid green;
+.card-container {
+  align-items: center;
+  background-color: #023031;
+  border: 1px solid red;
   display: flex;
   flex: 1 1 300px;
   justify-content: center;
 }
 
-.card h2 {
-  color: red;
+.card {
+  align-items: center;
+  background-color: #316b52;
+  border: 6px solid white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  justify-content: center;
+  padding: 8px;
 }

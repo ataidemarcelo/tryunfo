@@ -37,7 +37,7 @@ class App extends React.Component {
               onInputChange={ this.onInputChange }
               onSaveButtonClick={ this.onSaveButtonClick }
             />
-            <Card />
+            <Card { ...cards[0] } />
           </div>
         </main>
 
