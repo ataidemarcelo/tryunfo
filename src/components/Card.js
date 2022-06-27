@@ -19,21 +19,43 @@ class Card extends Component {
     return (
       <div className="card-container">
         <div className="card">
-          <h2 data-testid="name-card">{ cardName }</h2>
-          <p data-testid="description-card">{ cardDescription }</p>
-          <p data-testid="attr1-card">
-            Attr01..........
-            { cardAttr1 }
-          </p>
-          <p data-testid="attr2-card">
-            Attr02..........
-            { cardAttr2 }
-          </p>
-          <p data-testid="attr3-card">
-            Attr03..........
-            { cardAttr3 }
-          </p>
-          <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+          <div className="card-title">
+            <h2 data-testid="name-card">{ cardName }</h2>
+          </div>
+          <div className="card-image">
+            <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+          </div>
+
+          <div className="card-description">
+            <p data-testid="description-card">{ cardDescription }</p>
+          </div>
+
+          <div className="card-attr-container">
+            <div className="card-attr">
+              <p data-testid="attr1-card">
+                Attr01.........................
+              </p>
+              <span>
+                { cardAttr1 }
+              </span>
+            </div>
+            <div className="card-attr">
+              <p data-testid="attr2-card">
+                Attr02.........................
+              </p>
+              <span>
+                { cardAttr2 }
+              </span>
+            </div>
+            <div className="card-attr">
+              <p data-testid="attr3-card">
+                Attr03.........................
+              </p>
+              <span>
+                { cardAttr3 }
+              </span>
+            </div>
+          </div>
           <p data-testid="rare-card">{ cardRare }</p>
           { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
           {/* <p>{hasTrunfo }</p> */}

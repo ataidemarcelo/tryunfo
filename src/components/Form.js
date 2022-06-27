@@ -25,7 +25,7 @@ class Form extends Component {
         <h2>Adicionar nova Carta</h2>
         <form className="form">
           <label htmlFor="name-input">
-            Nome:
+            Nome
             <input
               className="block"
               data-testid="name-input"
@@ -39,7 +39,7 @@ class Form extends Component {
           </label>
 
           <label htmlFor="description-input">
-            Descrição:
+            Descrição
             <textarea
               className="block"
               data-testid="description-input"
@@ -53,7 +53,7 @@ class Form extends Component {
           </label>
 
           <label className="attr" htmlFor="attr1-input">
-            Attr01:
+            Attr01
             <input
               className="block"
               data-testid="attr1-input"
@@ -66,7 +66,7 @@ class Form extends Component {
           </label>
 
           <label className="attr" htmlFor="attr2-input">
-            Attr02:
+            Attr02
             <input
               className="block"
               data-testid="attr2-input"
@@ -79,7 +79,7 @@ class Form extends Component {
           </label>
 
           <label className="attr" htmlFor="attr3-input">
-            Attr03:
+            Attr03
             <input
               className="block"
               data-testid="attr3-input"
@@ -91,22 +91,27 @@ class Form extends Component {
             />
           </label>
 
-          <label htmlFor="image-input">
-            Imagem:
-            <input
-              className="block"
-              data-testid="image-input"
-              type="text"
-              name="cardImage"
-              id="image-input"
-              value={ cardImage }
-              onChange={ onInputChange }
-            />
+          <p>Pontos restantes = 000</p>
+
+          <label className="image" htmlFor="image-input">
+            Imagem
+            <div>
+              <span>icon</span>
+              <input
+                data-testid="image-input"
+                type="text"
+                name="cardImage"
+                id="image-input"
+                value={ cardImage }
+                onChange={ onInputChange }
+              />
+            </div>
           </label>
 
           <label htmlFor="rate-input">
             Raridade
             <select
+              className="block"
               data-testid="rare-input"
               name="cardRare"
               id="rare-input"
@@ -119,7 +124,7 @@ class Form extends Component {
             </select>
           </label>
 
-          <div className="trunfo-input">
+          <div className="trunfo">
             <input
               data-testid="trunfo-input"
               type="checkbox"
