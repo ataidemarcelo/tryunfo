@@ -24,7 +24,7 @@ class App extends React.Component {
         cardTrunfo: false,
       },
       cards: [],
-      // hasTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
   }
@@ -120,8 +120,13 @@ class App extends React.Component {
     });
   }
 
+  // Você já tem um Super Trunfo em seu baralho' é renderizado caso já exista uma carta Super Trunfo no baralho
   onSaveButtonClick = () => {
     const { card } = this.state;
+    if (card.cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+
     this.setState((prev) => ({
       cards: [card, ...prev.cards],
     }));
@@ -129,7 +134,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { card, isSaveButtonDisabled } = this.state;
+    const { card, hasTrunfo, isSaveButtonDisabled } = this.state;
     return (
       <div className="wrapper">
         <Header />
@@ -140,6 +145,7 @@ class App extends React.Component {
               { ...card }
               onInputChange={ this.onInputChange }
               onSaveButtonClick={ this.onSaveButtonClick }
+              hasTrunfo={ hasTrunfo }
               isSaveButtonDisabled={ isSaveButtonDisabled }
             />
             <Card { ...card } />
