@@ -134,7 +134,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { card, hasTrunfo, isSaveButtonDisabled } = this.state;
+    const { card, cards, hasTrunfo, isSaveButtonDisabled } = this.state;
     return (
       <div className="wrapper">
         <Header />
@@ -149,6 +149,10 @@ class App extends React.Component {
               isSaveButtonDisabled={ isSaveButtonDisabled }
             />
             <Card { ...card } />
+          </div>
+          <div>
+            {cards.map((cardItem) => (
+              <Card key={ cardItem.cardName } { ...cardItem } />))}
           </div>
         </main>
 
