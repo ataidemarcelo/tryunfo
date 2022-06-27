@@ -32,26 +32,26 @@ class Card extends Component {
 
           <div className="card-attr-container">
             <div className="card-attr">
-              <p data-testid="attr1-card">
+              <p>
                 Attr01.........................
               </p>
-              <span>
+              <span data-testid="attr1-card">
                 { cardAttr1 }
               </span>
             </div>
             <div className="card-attr">
-              <p data-testid="attr2-card">
+              <p>
                 Attr02.........................
               </p>
-              <span>
+              <span data-testid="attr2-card">
                 { cardAttr2 }
               </span>
             </div>
             <div className="card-attr">
-              <p data-testid="attr3-card">
+              <p>
                 Attr03.........................
               </p>
-              <span>
+              <span data-testid="attr3-card">
                 { cardAttr3 }
               </span>
             </div>

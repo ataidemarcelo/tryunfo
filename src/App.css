@@ -13,5 +13,7 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  max-width: 80rem;
+  margin: auto;
   padding: 16px;
 }
