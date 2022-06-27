@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
 import Header from './components/Header';
@@ -12,21 +13,25 @@ class App extends React.Component {
     super();
 
     this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
-      cardImage: '',
-      cardRare: 'normal',
-      cardTrunfo: false,
-      hasTrunfo: false,
+      card: {
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+      },
+      cards: [],
+      // hasTrunfo: false,
       isSaveButtonDisabled: true,
     };
   }
 
   // Rever a lógica das validações (true e false)
   areFieldsEmpty = () => {
+    const { card } = this.state;
     const {
       cardName,
       cardDescription,
@@ -35,7 +40,7 @@ class App extends React.Component {
       cardAttr1,
       cardAttr2,
       cardAttr3,
-    } = this.state;
+    } = card;
 
     if (cardName.length === 0
       || cardDescription.length === 0
@@ -50,7 +55,8 @@ class App extends React.Component {
   }
 
   areAttrValid = () => {
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.state;
+    const { card } = this.state;
+    const { cardAttr1, cardAttr2, cardAttr3 } = card;
     const min = 0;
     const max = 90;
     const maxTotal = 210;
@@ -89,15 +95,41 @@ class App extends React.Component {
 
   onInputChange = ({ target }) => {
     const { name, type } = target;
+    const { card } = this.state;
     const value = type === 'checkbox' ? target.checked : target.value;
+    const newCard = card;
+    newCard[name] = value;
     this.setState({
-      [name]: value,
+      card: newCard,
     }, () => this.enableButtonSave());
   }
 
-  onSaveButtonClick = () => {}
+  clearForm = () => {
+    this.setState({
+      card: {
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+      },
+      isSaveButtonDisabled: true,
+    });
+  }
+
+  onSaveButtonClick = () => {
+    const { card } = this.state;
+    this.setState((prev) => ({
+      cards: [card, ...prev.cards],
+    }));
+    this.clearForm();
+  }
 
   render() {
+    const { card, isSaveButtonDisabled } = this.state;
     return (
       <div className="wrapper">
         <Header />
@@ -105,11 +137,12 @@ class App extends React.Component {
         <main className="main">
           <div className="main-container">
             <Form
-              { ...this.state }
+              { ...card }
               onInputChange={ this.onInputChange }
               onSaveButtonClick={ this.onSaveButtonClick }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
             />
-            <Card { ...this.state } />
+            <Card { ...card } />
           </div>
         </main>
 

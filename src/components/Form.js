@@ -14,10 +14,9 @@ class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
-      isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
+      isSaveButtonDisabled,
     } = this.props;
 
     return (
