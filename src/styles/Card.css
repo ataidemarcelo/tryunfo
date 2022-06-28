@@ -11,6 +11,10 @@
   width: 15rem;
 }
 
+/* .card:hover {
+  box-shadow: 4px 4px 4px #ccc;
+} */
+
 .card-title {
   background-color: #023031;
   border-radius: 8px 8px 0 0;
@@ -23,7 +27,7 @@
 
 .card-image {
   background-color: yellow;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 77%, 0 100%);
   flex: 1;
   overflow: hidden;
   width: 100%;
@@ -39,7 +43,7 @@
   font-size: 12px;
   height: 20px;
   margin-top: -6px;
-  transform: rotate(-8deg);
+  transform: rotate(-9deg);
 }
 
 .card-attr-container {

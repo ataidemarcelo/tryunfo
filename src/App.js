@@ -1,10 +1,11 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
 import Header from './components/Header';
 import Form from './components/Form';
 import Card from './components/Card';
 import Footer from './components/Footer';
+
+// import cardsMock from './mock/data';
 
 import './App.css';
 
@@ -23,9 +24,15 @@ class App extends React.Component {
         cardRare: 'normal',
         cardTrunfo: false,
       },
+      // cards: [...cardsMock],
       cards: [],
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      filters: {
+        nameFilter: '',
+        rareFilter: 'todas',
+        trunfoFilter: false,
+      },
     };
   }
 
@@ -120,7 +127,6 @@ class App extends React.Component {
     });
   }
 
-  // Você já tem um Super Trunfo em seu baralho' é renderizado caso já exista uma carta Super Trunfo no baralho
   onSaveButtonClick = () => {
     const { card } = this.state;
     if (card.cardTrunfo) {
@@ -143,12 +149,22 @@ class App extends React.Component {
     });
   }
 
+  handleChange = ({ target }) => {
+    const { type, name } = target;
+    const value = type === 'checkbox' ? target.checked : target.value;
+    const { filters } = this.state;
+    const newFilters = filters;
+    newFilters[name] = value;
+
+    this.setState({ filters: newFilters });
+  }
+
   render() {
-    const { card, cards, hasTrunfo, isSaveButtonDisabled } = this.state;
+    const { card, cards, hasTrunfo, isSaveButtonDisabled, filters } = this.state;
+    const { nameFilter, rareFilter } = filters;
     return (
       <div className="wrapper">
         <Header />
-
         <main className="main">
           <div className="main-container">
             <div className="form-container">
@@ -164,25 +180,67 @@ class App extends React.Component {
               <Card { ...card } />
             </div>
           </div>
-          <div>
-            {cards.map((cardItem) => (
-              <div key={ cardItem.cardName }>
-                <Card { ...cardItem } />
-                <button
-                  data-testid="delete-button"
-                  type="button"
-                  onClick={ () => this.removeCard(
-                    cardItem.cardName,
-                    cardItem.cardTrunfo,
-                  ) }
-                >
-                  Excluir
-                </button>
-              </div>
-            ))}
+
+          <div className="filter-container">
+            <h2>Todas as Cartas!</h2>
+            <p>Filtros de busca:</p>
+            <input
+              className="block"
+              data-testid="name-filter"
+              name="nameFilter"
+              type="text"
+              placeholder="Nome da carta"
+              onChange={ this.handleChange }
+            />
+            <select
+              className="block"
+              data-testid="rare-filter"
+              name="rareFilter"
+              value={ rareFilter }
+              onChange={ this.handleChange }
+            >
+              <option value="todas">Todas</option>
+              <option value="normal">Normal</option>
+              <option value="raro">Raro</option>
+              <option value="muito raro">Muito raro</option>
+            </select>
+            <div>
+              <input
+                data-testid="trunfo-filer"
+                type="checkbox"
+                name="trunfoFilter"
+              />
+              <span>
+                Super Trybe Trunfo
+              </span>
+            </div>
+          </div>
+
+          <div className="card-list-container">
+            {cards
+              .filter((item) => (rareFilter === 'todas'
+                ? true
+                : item.cardRare === rareFilter))
+              .filter((item) => item.cardName
+                .toLowerCase()
+                .includes(nameFilter.toLowerCase()))
+              .map((cardItem) => (
+                <div className="card-list" key={ cardItem.cardName }>
+                  <Card { ...cardItem } />
+                  <button
+                    data-testid="delete-button"
+                    type="button"
+                    onClick={ () => this.removeCard(
+                      cardItem.cardName,
+                      cardItem.cardTrunfo,
+                    ) }
+                  >
+                    Excluir
+                  </button>
+                </div>
+              ))}
           </div>
         </main>
-
         <Footer />
       </div>
     );
