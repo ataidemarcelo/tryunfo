@@ -5,14 +5,11 @@ import Form from './components/Form';
 import Card from './components/Card';
 import Footer from './components/Footer';
 
-// import cardsMock from './mock/data';
-
 import './App.css';
 
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       card: {
         cardName: '',
@@ -24,7 +21,6 @@ class App extends React.Component {
         cardRare: 'normal',
         cardTrunfo: false,
       },
-      // cards: [...cardsMock],
       cards: [],
       hasTrunfo: false,
       isSaveButtonDisabled: true,
@@ -36,7 +32,6 @@ class App extends React.Component {
     };
   }
 
-  // Rever a lógica das validações (true e false)
   areFieldsEmpty = () => {
     const { card } = this.state;
     const {
@@ -155,13 +150,12 @@ class App extends React.Component {
     const { filters } = this.state;
     const newFilters = filters;
     newFilters[name] = value;
-
     this.setState({ filters: newFilters });
   }
 
   render() {
     const { card, cards, hasTrunfo, isSaveButtonDisabled, filters } = this.state;
-    const { nameFilter, rareFilter } = filters;
+    const { nameFilter, rareFilter, trunfoFilter } = filters;
     return (
       <div className="wrapper">
         <Header />
@@ -180,7 +174,6 @@ class App extends React.Component {
               <Card { ...card } />
             </div>
           </div>
-
           <div className="filter-container">
             <h2>Todas as Cartas!</h2>
             <p>Filtros de busca:</p>
@@ -191,6 +184,7 @@ class App extends React.Component {
               type="text"
               placeholder="Nome da carta"
               onChange={ this.handleChange }
+              disabled={ trunfoFilter }
             />
             <select
               className="block"
@@ -198,6 +192,7 @@ class App extends React.Component {
               name="rareFilter"
               value={ rareFilter }
               onChange={ this.handleChange }
+              disabled={ trunfoFilter }
             >
               <option value="todas">Todas</option>
               <option value="normal">Normal</option>
@@ -206,21 +201,25 @@ class App extends React.Component {
             </select>
             <div>
               <input
-                data-testid="trunfo-filer"
+                data-testid="trunfo-filter"
                 type="checkbox"
                 name="trunfoFilter"
+                onChange={ this.handleChange }
               />
               <span>
                 Super Trybe Trunfo
               </span>
             </div>
           </div>
-
           <div className="card-list-container">
             {cards
               .filter((item) => (rareFilter === 'todas'
                 ? true
                 : item.cardRare === rareFilter))
+              .filter((item) => (trunfoFilter
+                ? item.cardTrunfo === trunfoFilter
+                : true
+              ))
               .filter((item) => item.cardName
                 .toLowerCase()
                 .includes(nameFilter.toLowerCase()))
