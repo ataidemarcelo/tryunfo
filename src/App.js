@@ -16,9 +16,9 @@ class App extends React.Component {
       card: {
         cardName: '',
         cardDescription: '',
-        cardAttr1: '0',
-        cardAttr2: '0',
-        cardAttr3: '0',
+        cardAttr1: '',
+        cardAttr2: '',
+        cardAttr3: '',
         cardImage: '',
         cardRare: 'normal',
         cardTrunfo: false,
@@ -72,7 +72,7 @@ class App extends React.Component {
     return false;
   }
 
-  isValidateForm = () => {
+  isValidForm = () => {
     if (this.areFieldsEmpty()) {
       // console.log('Campos Inválidos!!!');
       return true;
@@ -86,7 +86,7 @@ class App extends React.Component {
   };
 
   enableButtonSave = () => {
-    if (!this.isValidateForm()) {
+    if (!this.isValidForm()) {
       this.setState({ isSaveButtonDisabled: false });
       return;
     }
@@ -128,9 +128,19 @@ class App extends React.Component {
     }
 
     this.setState((prev) => ({
-      cards: [card, ...prev.cards],
+      cards: [...prev.cards, card],
     }));
     this.clearForm();
+  }
+
+  removeCard = (cardName, trunfo) => {
+    const { cards } = this.state;
+    if (trunfo) {
+      this.setState({ hasTrunfo: false });
+    }
+    this.setState({
+      cards: cards.filter((item) => item.cardName !== cardName),
+    });
   }
 
   render() {
@@ -141,18 +151,35 @@ class App extends React.Component {
 
         <main className="main">
           <div className="main-container">
-            <Form
-              { ...card }
-              onInputChange={ this.onInputChange }
-              onSaveButtonClick={ this.onSaveButtonClick }
-              hasTrunfo={ hasTrunfo }
-              isSaveButtonDisabled={ isSaveButtonDisabled }
-            />
-            <Card { ...card } />
+            <div className="form-container">
+              <Form
+                { ...card }
+                onInputChange={ this.onInputChange }
+                onSaveButtonClick={ this.onSaveButtonClick }
+                hasTrunfo={ hasTrunfo }
+                isSaveButtonDisabled={ isSaveButtonDisabled }
+              />
+            </div>
+            <div className="card-container">
+              <Card { ...card } />
+            </div>
           </div>
           <div>
             {cards.map((cardItem) => (
-              <Card key={ cardItem.cardName } { ...cardItem } />))}
+              <div key={ cardItem.cardName }>
+                <Card { ...cardItem } />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  onClick={ () => this.removeCard(
+                    cardItem.cardName,
+                    cardItem.cardTrunfo,
+                  ) }
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
           </div>
         </main>
 

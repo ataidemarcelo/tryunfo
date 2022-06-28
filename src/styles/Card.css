@@ -1,12 +1,3 @@
-.card-container {
-  align-items: center;
-  background-color: #023031;
-  display: flex;
-  flex: 1 1 480px;
-  justify-content: center;
-  padding: 48px 0;
-}
-
 .card {
   align-items: center;
   background-color: #316b52;

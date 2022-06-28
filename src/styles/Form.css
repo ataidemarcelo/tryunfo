@@ -1,20 +1,9 @@
-.form-container {
-  align-items: center;
-  background-color: rgba(248, 248, 248);
-  border: 1px solid green;
-  display: flex;
-  flex: 1 1 480px;
-  flex-direction: column;
-  font-weight: 900;
-  min-width: 380px;
-  padding: 16px 0;
-}
-
-.form-container h2 {
+.form h2 {
   padding: 32px 0;
+  text-align: center;
 }
 
-.form-container .form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 16px;

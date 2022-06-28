@@ -17,3 +17,24 @@
   max-width: 80rem;
   padding: 16px;
 }
+
+.card-container {
+  align-items: center;
+  background-color: #023031;
+  display: flex;
+  flex: 1 1 480px;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.form-container {
+  align-items: center;
+  background-color: rgba(248, 248, 248);
+  border: 1px solid green;
+  display: flex;
+  flex: 1 1 480px;
+  flex-direction: column;
+  font-weight: 900;
+  min-width: 380px;
+  padding: 16px 0;
+}
