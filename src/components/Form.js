@@ -22,9 +22,9 @@ class Form extends Component {
 
     return (
       <form className="form">
-        <h2>Adicionar nova Carta</h2>
+        <h2>Adicionar Nova Carta</h2>
         <label htmlFor="name-input">
-          Nome
+          Nome:
           <input
             className="block"
             data-testid="name-input"
@@ -38,7 +38,7 @@ class Form extends Component {
         </label>
 
         <label htmlFor="description-input">
-          Descrição
+          Descrição:
           <textarea
             className="block"
             data-testid="description-input"
@@ -52,7 +52,7 @@ class Form extends Component {
         </label>
 
         <label className="attr" htmlFor="attr1-input">
-          Attr01
+          Attr01:
           <input
             className="block"
             data-testid="attr1-input"
@@ -65,7 +65,7 @@ class Form extends Component {
         </label>
 
         <label className="attr" htmlFor="attr2-input">
-          Attr02
+          Attr02:
           <input
             className="block"
             data-testid="attr2-input"
@@ -78,7 +78,7 @@ class Form extends Component {
         </label>
 
         <label className="attr" htmlFor="attr3-input">
-          Attr03
+          Attr03:
           <input
             className="block"
             data-testid="attr3-input"
@@ -90,12 +90,12 @@ class Form extends Component {
           />
         </label>
 
-        <p>Pontos restantes = 000</p>
+        <p>Pontos Restantes = 000</p>
 
         <label className="image" htmlFor="image-input">
-          Imagem
+          Imagem:
           <div>
-            <span>icon</span>
+            <span>URL</span>
             <input
               data-testid="image-input"
               type="text"

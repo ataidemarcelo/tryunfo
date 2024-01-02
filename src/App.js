@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Form from './components/Form';
 import Card from './components/Card';
 import Footer from './components/Footer';
+import cardsStoraged from './mock/data';
 
 import './App.css';
 
@@ -21,7 +22,7 @@ class App extends React.Component {
         cardRare: 'normal',
         cardTrunfo: false,
       },
-      cards: [],
+      cards: [...cardsStoraged],
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       filters: {
